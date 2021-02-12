@@ -1,6 +1,7 @@
 {
   "name": "root",
   "private": true,
+  "version": "2.12.4",
   "devDependencies": {
     "husky": "4.3.6",
     "lerna": "3.22.1",
