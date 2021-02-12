@@ -26,6 +26,12 @@ export class CamelCase extends PrismaReader {
             lines.splice(1, 0, `@@map("${modelName}")`);
             line[1] = this.convertWord(line[1], true);
             lines[0] = line.join(' ');
+            // mse fix
+            // } else if (i === 0 && !line[1].includes('_')) {
+            // console.log('cleanLine', line[1]);
+            // lines.splice(1, 0, `@@map("${modelName}")`);
+            // line[1] = this.convertWord(line[1], true);
+            // lines[0] = line.join(' ');
           } else if (!lines[i].includes('@@') && !lines[i].includes('//')) {
             const line = lines[i].replace(/[\n\r]/g, '').split(' ');
             const cleanLine = this.lineArray(lines[i]);
@@ -43,6 +49,11 @@ export class CamelCase extends PrismaReader {
               const index = line.indexOf(cleanLine[1]);
               line[index] = this.convertWord(cleanLine[1], true);
             }
+            // mse fix
+            // if (/*cleanLine[1].includes('_') &&*/ kind !== 'enum') {
+            //   const index = line.indexOf(cleanLine[1]);
+            //   line[index] = this.convertWord(cleanLine[1], true);
+            // }
             lines[i] = line.join(' ');
           }
         }

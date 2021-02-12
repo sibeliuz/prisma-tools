@@ -4,7 +4,7 @@
   "version": "2.12.2",
   "author": "Ahmed Elewa @AhmedElywa",
   "bin": {
-    "pal": "./bin/run"
+    "pol": "./bin/run"
   },
   "bugs": "https://github.com/paljs/prisma-tools/issues",
   "dependencies": {
@@ -57,7 +57,7 @@
   "main": "lib/index.js",
   "oclif": {
     "commands": "./lib/commands",
-    "bin": "pal",
+    "bin": "pol",
     "plugins": [
       "@oclif/plugin-help"
     ]

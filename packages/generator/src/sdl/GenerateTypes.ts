@@ -48,8 +48,9 @@ export class GenerateTypes {
           : options.type.toString() === 'AffectedRowsOutput'
           ? 'Prisma.BatchPayload'
           : options.type;
-        return `${!input ? 'Client.' : ''}${type}${options.isList ? '[]' : ''}`;
-    }
+         // return `${!input ? 'Client.' : ''}${this.capital(type as any)}${options.isList ? '[]' : ''}`;
+          return `${!input ? 'Client.' : ''}${type}${options.isList ? '[]' : ''}`;
+        }
   }
 
   hasEmptyTypeFields(type: string) {
@@ -160,8 +161,8 @@ export class GenerateTypes {
               .replace('Aggregate', '');
             args.push(
               `count?: true`,
-              `avg?: Client.Prisma.${modelName}AvgAggregateInputType`,
-              `sum?: Client.Prisma.${modelName}SumAggregateInputType`,
+              // `avg?: Client.Prisma.${modelName}AvgAggregateInputType`,
+              // `sum?: Client.Prisma.${modelName}SumAggregateInputType`,
               `min?: Client.Prisma.${modelName}MinAggregateInputType`,
               `max?: Client.Prisma.${modelName}MaxAggregateInputType`,
             );
@@ -186,6 +187,8 @@ export class GenerateTypes {
     [...this.schema.inputObjectTypes.prisma, ...inputModel].forEach((input) => {
       if (input.fields.length > 0) {
         const fields: string[] = [`export interface ${input.name} {`];
+        // mse fix
+        // const fields: string[] = [`export interface ${this.capital(input.name)} {`];
         input.fields.forEach((field) => {
           const inputType = this.getInputType(field);
           const hasEmptyType =
